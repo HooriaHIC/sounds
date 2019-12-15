@@ -1,0 +1,130 @@
+body{
+    background: white !important;
+}
+nav{
+    background-color: grey;
+    border-bottom: 3px solid whitesmoke;
+    min-height: 70px;
+}
+.nav-link, 
+.nav-link:hover{
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    color: White;
+}
+
+.active{
+    background-color: rgba(255,255,255,0.2);
+    border-bottom: 5px solid white;
+}
+
+.nav-item{
+    height: 70px;
+}
+
+.nav-item:hover{
+    background-color: rgba(255,255,255,0.3);
+}
+
+.nav-brand{
+    margin-right: 3vw;
+}
+
+.pills-section{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content:center;
+}
+
+.pills-section .btn{
+    background: whitesmoke;
+    margin: 10px;
+    border-radius: 30px / 30px;
+}
+.pills-section .btn:hover{
+    transition: all 1s;
+    background: rgb(39, 37, 37);
+    color: white;
+    border-radius: 30px / 30px;
+}
+.carousel-section{
+    margin-top: 70px;
+}
+.nav-pills{
+    border-bottom: 5px solid rgb(196, 196, 196);
+}
+.nav-pills .nav-item{
+    margin-bottom: -25px;
+}
+.nav-pills .nav-link{
+    color: black;
+    transform: none !important;
+    font-size: 13px;
+    border-radius: 0% !important;
+    border-bottom: 5px solid rgb(196, 196, 196);
+}
+.nav-pills .active{
+    color: black !important;
+    background-color: transparent !important;
+    font-size: 13px;
+    border-radius: 0% !important;
+    border-bottom: 5px solid rgb(45, 129, 255);
+}
+.nav-pills .nav-link:hover{
+    color: black !important;
+    background-color: transparent !important;
+    font-size: 13px;
+    border-radius: 0% !important;
+    border-bottom: 5px solid rgb(45, 129, 255);
+}
+
+.card{
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    border: none !important;
+}
+
+p{
+    font-size: 13px;
+    color: rgb(59, 59, 59) !important;
+}
+
+
+.card-title{
+    color: rgb(59, 59, 59) !important;
+}
+.dropdown-menu{
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    border: none !important;
+}
+
+.dropdown{
+    margin-top: -50px;
+}
+
+footer{
+    background-color: grey;
+    padding-top: 15px;
+    min-height: 50px;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+.copy-txt{
+    color: white !important;
+}
+
+.main-heading{
+    color: rgb(59, 58, 58);
+}
+
+.cast{
+    font-size: large;
+}
+.cast span{
+    font-size: large;
+    color: rgb(66, 152, 209);
+}

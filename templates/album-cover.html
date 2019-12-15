@@ -1,0 +1,248 @@
+<style>
+    body {
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    section a:visited {
+        color: #000000;
+    }
+
+    section a:hover {
+        color: #d33a2c;
+    }
+
+
+    /* nav */
+    nav {
+        background: #242521;
+        color: #FFFFFF;
+        left: 0;
+        position: relative;
+        right: 0;
+        top: 0;
+    }
+
+    nav header {
+        font-size: 20px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+
+    nav ul {
+        background-color: #d33a2c;
+        height: 144px;
+        list-style: none;
+        margin: 0;
+        overflow: auto;
+        padding: 0;
+    }
+
+    nav li {
+        border-bottom: 1px solid #FFFFFF;
+        font-size: 18px;
+        padding: 20px 0 5px 20px;
+    }
+
+    nav li:last-child {
+        border-bottom: none;
+    }
+
+    ul:last-child {
+        padding-bottom: 5px;
+    }
+
+    /* main */
+    main {
+        padding: 0 20px 20px;
+    }
+
+
+    @media (min-width: 815px) {
+        nav {
+            height: 100%;
+            position: fixed;
+            width: 300px;
+        }
+
+        nav ul {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        main {
+            left: 300px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding-left: 20px;
+        }
+    }
+
+    .divtext[data-len="16"] {
+        font-size: calc(4vh * 1);
+    }
+
+    .divtext[data-len="15"] {
+        font-size: calc(4vh * 16/15);
+    }
+
+    .divtext[data-len="14"] {
+        font-size: calc(4vh * 16/14);
+    }
+
+    .divtext[data-len="13"] {
+        font-size: calc(4vh * 16/13);
+    }
+
+    .divtext[data-len="12"] {
+        font-size: calc(4vh * 16/12);
+    }
+
+    .divtext[data-len="11"] {
+        font-size: calc(4vh * 16/11);
+    }
+
+    .divtext[data-len="10"] {
+        font-size: calc(4vh * 16/10);
+    }
+
+    .divtext[data-len="9"] {
+        font-size: calc(4vh * 16/9);
+    }
+
+    .divtext[data-len="8"] {
+        font-size: calc(4vh * 16/8);
+    }
+
+    .divtext[data-len="7"] {
+        font-size: calc(4vh * 16/7);
+    }
+
+    .divtext[data-len="6"] {
+        font-size: calc(4vh * 16/6);
+    }
+
+    .divtext[data-len="5"] {
+        font-size: calc(4vh * 16/5);
+    }
+
+    .divtext[data-len="4"] {
+        font-size: calc(4vh * 16/4);
+    }
+
+    .divtext[data-len="3"] {
+        font-size: calc(4vh * 16/3);
+    }
+
+    .divtext[data-len="2"] {
+        font-size: calc(4vh * 16/2);
+    }
+
+    .divtext[data-len="1"] {
+        font-size: calc(4vh * 16);
+    }
+</style>
+<!-- <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js">
+</script> -->
+<nav id="navbar" class="pb-4 pt-5 pl-2 pr-2">
+
+    <img src="{{object.image.url}}" class="img-fluid mt-2">
+    <div class="ml-4 mt-2">
+        <h2 class="divtext" style="font-size: 5vh;">{{object.name}}</h2>
+
+        <p class="mt-3">Created by: <a class="ml-3" href="
+                {% url 'music-list' username=object.artist %}">{{object.artist}}</a></p>
+        <p>Contains: <span class="ml-3">{{object.songs.all.count}}</span> Songs</p>
+        <p>Release Date: <span class="ml-3">{{object.release_date}}</span></p>
+        <div class="share mt-3 mb-5">
+            <span><i class="fa fa-share-alt"></i></span>
+            <div>
+                <a
+                    href="javascript:void(window.open('https://twitter.com/share?url=' + encodeURIComponent(document.location) + '&amp;text=' + encodeURIComponent(document.title) + '&amp;via=Hooriaishtiaq&amp;hashtags=Music','_blank'))"><i
+                        class="fa fa-twitter"></i></a>
+                <a
+                    href="javascript:void(window.open('https://www.facebook.com/sharer.php?u=' + encodeURIComponent(document.location) + '?t=' + encodeURIComponent(document.title),'_blank'))"><i
+                        class="fa fa-facebook"></i></a>
+                <a
+                    href="javascript:void(window.open('https://pinterest.com/pin/create/bookmarklet/?url=' + encodeURIComponent(document.location) + '&amp;description=' + encodeURIComponent(document.title),'_blank'))"><i
+                        class="fa fa-pinterest"></i></a>
+            </div>
+        </div>
+    </div>
+
+</nav>
+<main id="main-doc mt-5">
+
+    <div class="row mt-5 mb-5">
+        {% for so in object.songs.all %}
+        <div class="col-md-3 mt-5">
+            <div class="card">
+                <img src="{{so.image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-10">
+                            <h5 class="card-title">{{so.name}}</h5>
+                            <p class="card-text">{{object.album}} | <a
+                                    href="{% url 'music-list' object.artist.username %}">{{object.artist}}</a>
+                            </p>
+                        </div>
+                        <div class="col-2">
+                            <div class="dropdown"
+                                style="margin-right:15px; margin-top: 0px; position: absolute; right: 0px;">
+                                <a class="float-right" href="#" role="button" id="dropdownMenuLink"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-ellipsis-v"
+                                        style="color: white;text-shadow: 0px 0px 10px rgba(0,0,0,0.09);"></i>
+                                </a>
+
+                                <div class="dropdown-menu" style="margin-left: -130px; color: white !important;"
+                                    aria-labelledby="
+                                                        dropdownMenuLink">
+                                    <a class="dropdown-item" style="color: white !important;"
+                                        href=" {% url 'post-detail' so.id %}">More</a>
+                                    <a class="dropdown-item" style="color: white !important;"
+                                        onclick="cs_change_music('{{so.song.url}}');document.getElementById('song').innerHTML = '{{songs.name}}';
+                                                                                    document.getElementById('artist').innerHTML = '{{so.artist}}';document.getElementById('cover-image').src = '{{so.image.url}}'">Play</a>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if object.artist == user %}
+    <div class="float-right mt-3 mr-5">
+        <a class="btn update-btn text-white btn-sm mt-1 mb-1" href="{% url 'playlist-update' object.id %}">Update</a>
+        <a class="btn delete-btn text-white btn-sm mt-1 mb-1" href="{% url 'playlist-delete' object.id %}">Delete</a>
+    </div>
+
+    {% endif %}
+</main>
+
+<script>
+    var els = document.getElementsByClassName("divtext"),
+        l = els.length;
+    for (var i = 0; i < l; i++) {
+        els[i].dataset.len = els[i].firstChild.nodeValue.length;
+        console.log(els[i].dataset.len);
+    }
+</script>

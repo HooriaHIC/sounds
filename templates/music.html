@@ -1,0 +1,143 @@
+<style>
+    .swiper-container {
+        width: 80vw;
+        margin-top: 10px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .swiper-container2 {
+        width: 85vw;
+        margin-left: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+        padding-bottom: 50px;
+    }
+
+    .swiper-slide {
+        background: #fff;
+        border-radius: 0px;
+        width: 300px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+        z-index: 1;
+        height: 300px;
+        overflow: hidden;
+    }
+</style>
+
+<div class="swiper-container mb-2">
+    <h2 class="text-center mb-3 mt-5">New releases</h2>
+
+    <div class="swiper-wrapper">
+        {% for i in latest %}
+
+        <div class="swiper-slide"
+            style="background: url({{i.image.url}}) no-repeat center; background-size: auto 300px;">
+
+
+            <div class="dropdown" style="margin-right:15px; margin-top: 0px; position: absolute; right: 0px;">
+                <a class="float-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-ellipsis-h" style="color: white;text-shadow: 0px 0px 10px rgba(0,0,0,0.09);"></i>
+                </a>
+
+                <div class="dropdown-menu" style="margin-left: -130px; color: white !important;" aria-labelledby="
+                            dropdownMenuLink">
+                    <a class="dropdown-item" style="color: white !important;"
+                        href=" {% url 'post-detail' i.id %}">More</a>
+                    {% for v in playlist %}
+                    <a class="dropdown-item" style="color: white !important;"
+                        href="{% url 'add_to_playlist' operation='add' pk=i.pk playlist_id=v.id%}">Add to
+                        {{v.name}}</a>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+
+
+            <p
+                onclick="cs_change_music('{{i.song.url}}');document.getElementById('song').innerHTML = '{{i.name}}';
+            document.getElementById('artist').innerHTML = '{{i.artist}}';document.getElementById('cover-image').src = '{{i.image.url}}'">
+                <img src="https://summitcl.com/wp-content/uploads/2018/11/play-button-overlay-png-1-420x400.png"
+                    class="play-img" id="play-img">
+            </p>
+
+        </div>
+        {% empty %}
+        <div class="container">
+            <p class="text-center">Ohh, No one have uploaded today, But you can still enjoy songs below. Have Fun!</p>
+
+        </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+<h2 class="text-center mb-5">Songs</h2>
+
+<div class="swiper-container2 pb-5" style="margin-bottom: 100px;">
+    <div class="swiper-wrapper row">
+        {% for i in music %}
+        <div class="col-md-4 m-2" style="max-width: 290px;">
+            <div class="swiper-slide"
+                style="background: url({{i.image.url}}) no-repeat center; background-size: auto 300px; height: 300px; width: 300px;">
+                <div
+                    style="position: absolute; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.04), inset 0 0 10px rgba(0,0,0,0.04);width: 55px; height: 55px; background: transparent; margin-left: 10px; margin-top: 10px; border-radius: 50%; border: 2px solid white; z-index: 3px;">
+                    <a href="{% url 'like' song_id=i.id %}">
+                        <i class="fa fa-heart float-right"
+                            style="text-shadow: 0px 0px 10px rgba(0,0,0,0.06);font-size: 2em;color: rgb(255, 255, 255); transition: all 2s; -webkit-text-stroke: 4px rgb(255, 255, 255); margin-top: 12px; margin-right: 9px;"></i>
+                    </a>
+                </div>
+
+                <div class="dropdown" style="margin-right:15px; margin-top: 0px; position: absolute; right: 0px;">
+                    <a class="float-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-ellipsis-h"
+                            style="color: white;text-shadow: 0px 0px 10px rgba(0,0,0,0.09);"></i>
+                    </a>
+
+                    <div class="dropdown-menu" style="margin-left: -130px; color: white !important;" aria-labelledby="
+                                            dropdownMenuLink">
+                        <a class="dropdown-item" style="color: white !important;"
+                            href=" {% url 'post-detail' i.id %}">More</a>
+                        {% for v in playlist %}
+                        <a class="dropdown-item" style="color: white !important;"
+                            href="{% url 'add_to_playlist' operation='add' pk=i.pk playlist_id=v.id%}">Add to
+                            {{v.name}}</a>
+                        {% endfor %}
+                    </div>
+
+
+                </div>
+                <p>
+                    {% if user.is_authenticated %}
+                    <img onclick="cs_change_music('{{i.song.url}}');document.getElementById('song').innerHTML = '{{i.name}}';
+                                document.getElementById('artist').innerHTML = '{{i.artist}}';document.getElementById('cover-image').src = '{{i.image.url}}'"
+                        src="https://summitcl.com/wp-content/uploads/2018/11/play-button-overlay-png-1-420x400.png"
+                        class="play-img" id="play-img">
+                    {% else %}
+                    <a href="{% url 'register' %}">
+                        <img src="https://summitcl.com/wp-content/uploads/2018/11/play-button-overlay-png-1-420x400.png"
+                            class="play-img" id="play-img">
+                    </a>
+
+                    {% endif %}
+                </p>
+
+
+
+                <p class="float-right bg-light text-dark"
+                    style="margin-top: 150px; margin-right: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); padding: 3px;">
+                    {{i.like_set.count}}
+                    Likes</p>
+
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+</div>

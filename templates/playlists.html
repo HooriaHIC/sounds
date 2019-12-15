@@ -1,0 +1,54 @@
+<style>
+    .swiper-slide {
+        background: #fff;
+        border-radius: 0px;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+        min-width: 300px;
+        z-index: 1;
+        min-height: 300px;
+        overflow: hidden;
+    }
+</style>
+<div class="container-fluid ">
+    <h2 style="margin-top: 100px;" class="text-center mb-5">Playlists</h2>
+
+    <div class="row d-flex justify-content-center">
+        {% for i in playlist %}
+
+        <div class="col-md-4 m-2" style="max-width: 300px;">
+            <div class="swiper-slide"
+                style="background: url({{i.image.url}}) no-repeat center; background-size: auto 300px;">
+
+
+                <div class="dropdown" style="margin-right:15px; margin-top: 0px; position: absolute; right: 0px;">
+                    <a class="float-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-ellipsis-h"
+                            style="color: white;text-shadow: 0px 0px 10px rgba(0,0,0,0.09);"></i>
+                    </a>
+
+                    <div class="dropdown-menu" style="margin-left: -130px; " aria-labelledby="
+                                                            dropdownMenuLink">
+                        <a class="dropdown-item" style="color: #fff;" href=" {% url 'playlist-detail' i.id %}">More</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="{% url 'playlist-detail' i.id %}">
+                            <img src="https://summitcl.com/wp-content/uploads/2018/11/play-button-overlay-png-1-420x400.png"
+                                class="play-img" id="play-img">
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+</div>

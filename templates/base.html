@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Turret+Road&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: #2B2C28;
+            color: white;
+            font-family: 'Turret Road', cursive;
+
+            overflow-x: hidden;
+        }
+
+        *:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        form {
+            max-width: 500px;
+        }
+
+        .accordion,
+        .card {
+            background: #20211E;
+            color: white;
+            border: none;
+        }
+
+        button,
+        .btn,
+        .btn:hover,
+        button:hover {
+            background: #339989;
+            border-radius: 20px / 20px;
+            border: none;
+            height: 30px;
+            color: #FFFAFB;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h2,
+        h3 {
+            color: #FFFAFB;
+            font-weight: 700;
+            font-family: 'Turret Road', cursive;
+
+            /* Fallback: assume this color ON TOP of image */
+            background: linear-gradient(#7DE2D1, #267064);
+
+            -webkit-background-clip: text;
+            font-size: 10vh;
+            -webkit-text-fill-color: transparent;
+        }
+
+        input,
+        .form-control,
+        .form-control:focus {
+            background: rgba(0, 0, 0, 0.08);
+            border: none;
+            box-shadow: none;
+            outline: none;
+        }
+
+        .hero {
+            height: 100vh;
+            user-select: none;
+            background: #2B2C28;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 10vw;
+            color: #fff;
+        }
+
+
+
+        .centered {
+            position: absolute;
+            bottom: 40%;
+            left: 7%;
+            transform: rotate(-90deg);
+            color: #FFFAFB;
+            /* Fallback: assume this color ON TOP of image */
+            background: linear-gradient(#7DE2D1, #267064);
+
+            -webkit-background-clip: text;
+            font-size: 15vh;
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .centered-3 {
+            position: absolute;
+            bottom: 40%;
+            left: 6%;
+            transform: rotate(-90deg);
+            color: #FFFAFB;
+            /* Fallback: assume this color ON TOP of image */
+            background: linear-gradient(#7DE2D1, #267064);
+
+            -webkit-background-clip: text;
+            font-size: 15vh;
+            -webkit-text-fill-color: transparent;
+        }
+
+        a,
+        a:hover {
+            text-decoration: none;
+            color: #267064;
+        }
+
+        .nav-pills .nav-link.active,
+        .nav-pills .show>.nav-link {
+            background: rgba(255, 255, 255, 0.4);
+            color: #0E103D;
+        }
+
+        .play-img {
+            height: 100px;
+            left: 100px;
+            cursor: pointer;
+            top: 100px;
+            transform: translate(100px, 100px);
+            width: 100px;
+        }
+
+        body a {
+            color: inherit;
+        }
+
+        body a:not(:hover) {
+            text-decoration: none;
+        }
+
+        body #link-a-me {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            height: 60px;
+            width: 60px;
+            background: url(https://i.imgur.com/xoxkq1r.png);
+            background-size: cover;
+            z-index: 1;
+            animation: pop-in 120s ease-out;
+        }
+
+        body .player {
+            -webkit-appearance: none;
+            z-index: 2;
+
+            background: #339989;
+            color: #FFFAFB;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.04);
+            min-height: 80px;
+            max-height: 80px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        video::-webkit-media-controls-panel {
+            background: #339989;
+            color: #FFFAFB !important;
+            box-shadow: none;
+            border: none;
+        }
+
+
+        body .player .left,
+        #cover-image {
+            width: 80px;
+        }
+
+        body .player .right {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body .player .right .top {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 10px;
+        }
+
+        body .player .right .top .song {
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        body .player .right .bottom {
+            display: flex;
+        }
+
+        body .player .right .bottom video {
+            flex-grow: 1;
+            height: 32px;
+        }
+
+        @keyframes pop-in {
+
+            0%,
+            95% {
+                transform: translateY(100%);
+            }
+
+            100% {
+                transform: translateY(0%);
+            }
+        }
+
+        .share {
+            width: 400px;
+            right: 0%;
+            margin-right: -200px;
+            top: 50%;
+            border-radius: 20px;
+        }
+
+        .share span {
+            width: 200px;
+            line-height: 60px;
+            color: #FFFAFB;
+            display: inline-block;
+            font-weight: 700;
+            text-transform: uppercase;
+            position: absolute;
+            margin-left: 50px;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        .share div {
+            font-size: 0;
+        }
+
+        *::-webkit-scrollbar {
+            width: 4px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background: #267064;
+
+        }
+
+
+
+        .share a {
+            line-height: 55px;
+            width: 60px;
+            text-align: center;
+            display: inline-block;
+            background: linear-gradient(#7DE2D1, #267064);
+
+            color: #ffffff;
+            overflow: hidden;
+            opacity: 1;
+            transition: all 0.4s ease-in-out;
+            margin: 0 -20px;
+            box-shadow: 3px 1px 100px rgba(0, 0, 0, 0.1);
+        }
+
+        .share a:nth-child(1) {
+            border-top-left-radius: 40px;
+            border-bottom-left-radius: 40px;
+            margin-left: 0;
+        }
+
+        .share a:nth-child(1):hover {
+            background: linear-gradient(#61c5ec, #00aff0);
+        }
+
+        .share a:nth-child(2):hover {
+            background: linear-gradient(#3B5998, #0077b5);
+        }
+
+        .share a:nth-child(2) {
+            border-radius: 10px;
+        }
+
+        .share a:nth-child(3):hover {
+            background: linear-gradient(#ea4335, orangered);
+        }
+
+        .share a:nth-child(3) {
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            margin-left: 0;
+        }
+
+
+        .share:hover span,
+        .share.hover span {
+            opacity: 0;
+        }
+
+        .share:hover a,
+        .share.hover a {
+            border-radius: 50%;
+            margin: 0 10px;
+            color: #fff;
+            font-size: 28px;
+        }
+
+        .share:hover a:hover,
+        .share.hover a:hover {
+            color: #fff;
+        }
+    </style>
+    <style>
+        body {
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        section a:visited {
+            color: #000000;
+        }
+
+        section a:hover {
+            color: #d33a2c;
+        }
+
+
+        /* nav */
+        nav {
+            background: #242521;
+            color: #FFFFFF;
+            overflow: auto;
+            left: 0;
+            position: relative;
+            right: 0;
+            top: 0;
+        }
+
+        nav header {
+            font-size: 20px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        nav ul {
+            background-color: #d33a2c;
+            height: 144px;
+            list-style: none;
+            margin: 0;
+            overflow: auto;
+            padding: 0;
+        }
+
+        nav li {
+            border-bottom: 1px solid #FFFFFF;
+            font-size: 18px;
+            padding: 20px 0 5px 20px;
+        }
+
+        nav li:last-child {
+            border-bottom: none;
+        }
+
+        ul:last-child {
+            padding-bottom: 5px;
+        }
+
+        /* main */
+        main {
+            padding: 0 20px 20px;
+        }
+
+
+        @media (min-width: 815px) {
+            nav {
+                height: 100%;
+                position: fixed;
+                width: 300px;
+            }
+
+            nav ul {
+                height: 100%;
+                overflow-y: auto;
+            }
+
+            main {
+                left: 300px;
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding-left: 20px;
+            }
+        }
+
+        .divtext[data-len="16"] {
+            font-size: calc(4vh * 1);
+        }
+
+        .divtext[data-len="15"] {
+            font-size: calc(4vh * 16/15);
+        }
+
+        .divtext[data-len="14"] {
+            font-size: calc(4vh * 16/14);
+        }
+
+        .divtext[data-len="13"] {
+            font-size: calc(4vh * 16/13);
+        }
+
+        .divtext[data-len="12"] {
+            font-size: calc(4vh * 16/12);
+        }
+
+        .divtext[data-len="11"] {
+            font-size: calc(4vh * 16/11);
+        }
+
+        .divtext[data-len="10"] {
+            font-size: calc(4vh * 16/10);
+        }
+
+        .divtext[data-len="9"] {
+            font-size: calc(4vh * 16/9);
+        }
+
+        .divtext[data-len="8"] {
+            font-size: calc(4vh * 16/8);
+        }
+
+        .divtext[data-len="7"] {
+            font-size: calc(4vh * 16/7);
+        }
+
+        .divtext[data-len="6"] {
+            font-size: calc(4vh * 16/6);
+        }
+
+        .divtext[data-len="5"] {
+            font-size: calc(4vh * 16/5);
+        }
+
+        .divtext[data-len="4"] {
+            font-size: calc(4vh * 16/4);
+        }
+
+        .divtext[data-len="3"] {
+            font-size: calc(4vh * 16/3);
+        }
+
+        .divtext[data-len="2"] {
+            font-size: calc(4vh * 16/2);
+        }
+
+        .divtext[data-len="1"] {
+            font-size: calc(4vh * 16);
+        }
+
+        .wel {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .top-right {
+            position: absolute;
+            top: 8px;
+            left: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+    {% block content  %}
+    {% endblock content %}
+    {% if user.is_authenticated %}
+
+    <div class="player fixed-bottom">
+        <div class="left" id='sleft-img'><img id="cover-image"
+                src="https://i.scdn.co/image/9ca53beeb365f468b023a8360634f309325b5487">
+        </div>
+
+        <div class="right">
+            <div class="top">
+                <a class="song" id="song">Lets go to the forest</a>
+                <a id="artist" class="artist">Kero Kero
+                    Bonito</a>
+            </div>
+            <div class="bottom">
+                <video controls="" id="main-audio" name="media">
+                    <source src="https://i.koya.io/Kero%20Kero%20Bonito%20-%20Let's%20Go%20To%20The%20Forest.mp3"
+                        type="audio/mpeg"></video>
+            </div>
+        </div>
+
+    </div>
+    {% endif %}
+    {% include "footer.html" %}
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js">
+
+    </script>
+    <script>
+        var swiper = new Swiper('.swiper-container',
+            {
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                autoplay: {
+                    delay: 5000,
+                },
+                preloadImages: true,
+                keyboard: {
+                    enabled: true,
+                    onlyInViewport: false,
+                },
+                coverflowEffect: {
+                    rotate: 10,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 2,
+                    slideShadows: false,
+                },
+            }
+        );
+
+        let music1 = document.getElementById('main-audio');
+        let source = document.getElementById('src-d').src;
+
+        function cs_change_music(music) {
+            music1.pause();
+            music1.setAttribute('src', music);
+            music1.load();
+            music1.play();
+        }
+        music1.play();
+        // Force a hover to see the effect
+        const share = document.querySelector('.share');
+
+        setTimeout(() => {
+            share.classList.add("hover");
+        }, 1000);
+
+        setTimeout(() => {
+            share.classList.remove("hover");
+        }, 3000);
+
+    </script>
+
+</body>
+
+</html>

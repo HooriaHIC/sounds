@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container justify-content-center">
+    <div class="row text-white mt-5">
+        <div class="col-sm-6 offset-sm-3 ">
+            <h2 style="margin-top: 50px;">You have been Loged out</h2>
+            <div class="border-top pt-3">
+                <small class="text-muted"><a href="{% url 'login' %}">Log in Again</a></small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

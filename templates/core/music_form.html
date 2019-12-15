@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 mb-5">
+            <h2 style="margin-top: 100px;">Add or Edit Song</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group" style="float: right;">
+                    <button class="btn my-btn text-white">Post</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+{% endblock content %}

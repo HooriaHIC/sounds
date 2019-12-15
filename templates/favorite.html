@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+    <div class="container text-white mb-5">
+        <h2 class="mt-4 mb-4 text-center">Favorites Songs</h2>
+        <hr style=" border-top: 1px solid #FFFFFF;">
+
+        <div class="mb-5">
+            {% for item in items %}
+            {{item.name}}
+
+            {% empty %}
+            <p class="ml-3">You haven't liked anything yet.</p>
+            <a class='btn text-white float-right' style="background: #ED87BB;" href="{% url 'core:explore' %}">Go
+                Back</a>
+
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+</main>
+
+{% endblock content %}

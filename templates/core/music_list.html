@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="p-5">
+    <nav id="navbar" class="pb-4 pt-5 pl-2 pr-2">
+        <div class="col-md-12">
+            <img src="{{user.profile.image.url}}" class="img-fluid mt-2" alt="playlist-img">
+
+            <h2 class="mt-4">{{ view.kwargs.username }}</h2>
+            <div class="ml-3">
+                <div class="share mt-3">
+                    <span><i class="fa fa-share-alt"></i></span>
+                    <div>
+                        <a
+                            href="javascript:void(window.open('https://twitter.com/share?url=' + encodeURIComponent(document.location) + '&amp;text=' + encodeURIComponent(document.title) + '&amp;via=fabienb&amp;hashtags=koandesign','_blank'))"><i
+                                class="fa fa-twitter"></i></a>
+                        <a
+                            href="javascript:void(window.open('https://www.facebook.com/sharer.php?u=' + encodeURIComponent(document.location) + '?t=' + encodeURIComponent(document.title),'_blank'))"><i
+                                class="fa fa-facebook"></i></a>
+                        <a
+                            href="javascript:void(window.open('https://pinterest.com/pin/create/bookmarklet/?url=' + encodeURIComponent(document.location) + '&amp;description=' + encodeURIComponent(document.title),'_blank'))"><i
+                                class="fa fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+    <main id="main-doc">
+
+        <div class="tracks pt-5 mb-5 text-white">
+            {% for post in music %}
+
+            <div class="foreverytrack row mt-5 mb-4">
+                <div class="col-2">
+                    <img src="{{post.image.url}}" class="card-img-top rounded" alt="...">
+                </div>
+                <div class="col-7">
+                    <P class="cast ">{{post.name}}</P>
+                    <p><a href="">{{post.artist}}</a> | <a href="">{{post.album}}</a>
+                    </p>
+                </div>
+                <div class="col-2">
+                    <p
+                        onclick="cs_change_music('{{post.song.url}}');document.getElementById('song').innerHTML = '{{post.name}}';
+                                            document.getElementById('artist').innerHTML = '{{post.artist}}';document.getElementById('cover-image').src = '{{post.image.url}}'">
+                        <img style="cursor:pointer; max-width: 60px; max-height: 60px;" class="img-fluid"
+                            src="https://summitcl.com/wp-content/uploads/2018/11/play-button-overlay-png-1-420x400.png">
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </main>
+
+</div>
+
+{% endblock content %}

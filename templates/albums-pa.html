@@ -1,0 +1,158 @@
+<style>
+    body {
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+
+    #cover {
+        width: 300px;
+        height: 300px;
+        margin: 0px auto;
+        box-shadow: 6px 1px 18px rgba(0, 0, 0, 0.76);
+        -moz-box-shadow: 6px 1px 18px rgba(0, 0, 0, 0.76);
+        -webkit-box-shadow: 6px 1px 18px rgba(0, 0, 0, 0.76);
+    }
+
+    #blueRight {
+        height: 300px;
+        width: 30px;
+        position: relative;
+        background-color: #131515;
+        float: right;
+    }
+
+    #circle {
+        width: 65px;
+        height: 65px;
+        border-radius: 50px;
+        position: absolute;
+        background-color: #131515;
+        right: 0px;
+        top: 170px
+    }
+
+    #dire {
+        color: white;
+        font-family: helvetica;
+        font-weight: 500;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        font-size: 15px;
+        width: 200px;
+        margin-top: 40px;
+        padding-top: 160px;
+    }
+
+    #makingMovies {
+        color: white;
+        font-family: helvetica;
+        font-weight: 500;
+        width: 250px;
+        position: absolute;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        font-size: 15px;
+        top: 360px;
+        right: -110px;
+    }
+
+    .divtext[data-len="16"] {
+        font-size: calc(4vh * 1);
+    }
+
+    .divtext[data-len="15"] {
+        font-size: calc(4vh * 16/15);
+    }
+
+    .divtext[data-len="14"] {
+        font-size: calc(4vh * 16/14);
+    }
+
+    .divtext[data-len="13"] {
+        font-size: calc(4vh * 16/13);
+    }
+
+    .divtext[data-len="12"] {
+        font-size: calc(4vh * 16/12);
+    }
+
+    .divtext[data-len="11"] {
+        font-size: calc(4vh * 16/11);
+    }
+
+    .divtext[data-len="10"] {
+        font-size: calc(4vh * 16/10);
+    }
+
+    .divtext[data-len="9"] {
+        font-size: calc(4vh * 16/9);
+    }
+
+    .divtext[data-len="8"] {
+        font-size: calc(4vh * 16/8);
+    }
+
+    .divtext[data-len="7"] {
+        font-size: calc(4vh * 16/7);
+    }
+
+    .divtext[data-len="6"] {
+        font-size: calc(4vh * 16/6);
+    }
+
+    .divtext[data-len="5"] {
+        font-size: calc(4vh * 16/5);
+    }
+
+    .divtext[data-len="4"] {
+        font-size: calc(4vh * 16/4);
+    }
+
+    .divtext[data-len="3"] {
+        font-size: calc(4vh * 16/3);
+    }
+
+    .divtext[data-len="2"] {
+        font-size: calc(4vh * 16/2);
+    }
+
+    .divtext[data-len="1"] {
+        font-size: calc(4vh * 16);
+    }
+</style>
+<div id="container" class="container">
+    <h2 style="margin-top: 100px;" class="text-center mb-5">Albums</h2>
+
+    <div class="row d-flex justify-content-center">
+        {% for i in albums %}
+
+        <div class="col-md-4 mb-5">
+
+            <div id='cover' style="background: url({{i.image.url}}); background-size: 300px 300px;">
+                <div id='blueRight'>
+                    <div id='dire' class="divtext">
+                        {{i.name}} <span class="ml-1 mr-1">by:</span> <a
+                            href="{% url 'music-list' username=i.artist %}">{{i.artist}}</a>
+                    </div>
+                    <div id='circle'>
+                    </div>
+                    <div id='makingMovies'>
+                        <a href="{% url 'album-detail' i.id %}">More</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    var els = document.getElementsByClassName("divtext"),
+        l = els.length;
+    for (var i = 0; i < l; i++) {
+        els[i].dataset.len = els[i].firstChild.nodeValue.length;
+        console.log(els[i].dataset.len);
+    }
+</script>
