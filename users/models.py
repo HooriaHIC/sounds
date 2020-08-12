@@ -5,10 +5,10 @@ from PIL import Image
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    image = models.ImageField(default='', upload_to='profile_pics')
+    image = models.ImageField(default='', null=True, upload_to='profile_pics')
     real_name = models.CharField(max_length=150)
-    bio = models.TextField()
-    age = models.IntegerField()
+    bio = models.TextField(default="", null=True)
+    age = models.IntegerField(default=None, null=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'

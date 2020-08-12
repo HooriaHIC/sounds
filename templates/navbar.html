@@ -8,7 +8,7 @@
         width: 100vw;
         background: #2B2C28;
         padding: 0 10vw;
-        color: #FFFAFB;
+        color: #ffffff;
         z-index: 3;
         transition: 0.4s ease-out;
     }
@@ -44,7 +44,7 @@
     .main-header .menu-icon__line {
         display: block;
         position: relative;
-        background: #FFFAFB;
+        background: #000000;
         height: 2px;
         width: 20px;
         border-radius: 4px;
@@ -57,7 +57,7 @@
         height: 100%;
         width: 100%;
         border-radius: 4px;
-        background: #FFFAFB;
+        background: #000000;
         transition: background 0.8s ease;
     }
 
@@ -117,7 +117,7 @@
             width: 100vw;
             height: 100vh;
             font-size: 2rem;
-            color: #FFFAFB;
+            color: #000000;
             background: #2B2C28;
             transition: opacity 0.8s 0.5s, clip-path 1s 0.5s;
             clip-path: circle(200px at top right);
@@ -272,7 +272,7 @@
     }
 
     .fa-ellipsis-h {
-        color: #FFFAFB;
+        color: #000000;
         font-size: 2em;
         margin-top: 5px;
     }
@@ -281,13 +281,13 @@
         margin-left: -85px;
         margin-bottom: 5px;
         margin-top: 5px;
-        color: #FFFAFB;
-        background: #131515;
+        color: #000000;
+        background: #E3E4E4;
         border: none;
     }
 
     .dropdown-menu .dropdown-item:hover {
-        color: #FFFAFB;
+        color: #000000;
         background: rgba(255, 255, 255, 0.2);
     }
 </style>
@@ -301,6 +301,7 @@
     <ul class="nav-links mt-3">
         <div class="logo mt-2 mr-3">
             <a href="/">LOGO</a>
+
         </div>
         {% if user.is_authenticated %}
         <li class="nav-link">
@@ -310,6 +311,7 @@
             <a href="{% url 'playing' %}">Playlists</a>
         </li>
         <li class="nav-link">
+
             <a href="{% url 'explore' %}">Songs</a>
         </li>
 

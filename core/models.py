@@ -39,7 +39,7 @@ class Music(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     lyrics = models.TextField(default="Unknown lyrics")
     genre = models.CharField(
-        max_length=2,
+        max_length=300,
         choices=GENRE,
         null=False,
         blank=False,

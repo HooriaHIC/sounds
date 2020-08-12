@@ -14,7 +14,14 @@ import datetime
 
 
 def home(request):
-    return TemplateResponse(request, "home.html")
+    today = datetime.date.today()
+    context = {
+        'music': Music.objects.all(),
+        'playlist': Playlist.objects.all(),
+        'albums': Album.objects.all(),
+        'latest': Music.objects.filter(date_posted__gt=today)
+    }
+    return TemplateResponse(request, "home.html", context)
 
 
 def albums(request):
